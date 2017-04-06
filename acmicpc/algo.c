@@ -65,6 +65,8 @@ int main()
 {
 	int row, col;
 
+	printf("TEST");
+
 	scanf("%d", &listSize);
 
 	for (row = 1; row <= listSize; row++)
