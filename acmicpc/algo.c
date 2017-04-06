@@ -2,7 +2,11 @@
 
 int main()
 {
-	printf("Hello Git!\n");
+	int a;
+
+	scanf("%d", &a);
+
+	printf("Hello Git! %d\n", a);
 
 	return 0;
 }
