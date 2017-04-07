@@ -56,5 +56,8 @@
     <Text Include="output.txt">
       <Filter>소스 파일</Filter>
     </Text>
+    <Text Include="Todo.txt">
+      <Filter>소스 파일</Filter>
+    </Text>
   </ItemGroup>
 </Project>
