@@ -16,12 +16,36 @@
     <Filter Include="소스 파일\Accept">
       <UniqueIdentifier>{e87a0c31-368d-4b63-8b06-dce6b140c4f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Fail">
+      <UniqueIdentifier>{cf294397-3934-4b8a-b0ce-7e0d57b77186}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="algo.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="4574 스도미노쿠.c">
+      <Filter>소스 파일\Accept</Filter>
+    </ClCompile>
+    <ClCompile Include="2151 거울설치.c">
+      <Filter>소스 파일\Accept</Filter>
+    </ClCompile>
+    <ClCompile Include="Fail - 13911 집 구하기.cpp">
+      <Filter>소스 파일\Fail</Filter>
+    </ClCompile>
+    <ClCompile Include="1248 맞춰봐.c">
+      <Filter>소스 파일\Accept</Filter>
+    </ClCompile>
+    <ClCompile Include="1251 단어나누기.c">
+      <Filter>소스 파일\Accept</Filter>
+    </ClCompile>
+    <ClCompile Include="3190 뱀.c">
+      <Filter>소스 파일\Accept</Filter>
+    </ClCompile>
+    <ClCompile Include="3108 로고.c">
+      <Filter>소스 파일\Accept</Filter>
+    </ClCompile>
+    <ClCompile Include="2174 로봇 시뮬레이션.c">
       <Filter>소스 파일\Accept</Filter>
     </ClCompile>
   </ItemGroup>
