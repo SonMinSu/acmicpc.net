@@ -13,40 +13,46 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\Accept">
+      <UniqueIdentifier>{93094c25-3705-4668-93c3-e1d991871493}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Fail">
+      <UniqueIdentifier>{5ab5f02f-c60f-44ba-aef4-2fd5de6b7f01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="algo.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Fail\Fail - 13911 집 구하기.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Accept\1248.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Accept</Filter>
     </ClCompile>
     <ClCompile Include="Accept\1251.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Accept</Filter>
     </ClCompile>
     <ClCompile Include="Accept\2151.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Accept</Filter>
     </ClCompile>
     <ClCompile Include="Accept\2174.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Accept</Filter>
     </ClCompile>
     <ClCompile Include="Accept\3108.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Accept</Filter>
     </ClCompile>
     <ClCompile Include="Accept\3190.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Accept</Filter>
     </ClCompile>
     <ClCompile Include="Accept\3613.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Accept</Filter>
     </ClCompile>
     <ClCompile Include="Accept\4574.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Accept</Filter>
     </ClCompile>
     <ClCompile Include="Accept\13460.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Accept</Filter>
+    </ClCompile>
+    <ClCompile Include="Fail\Fail - 13911 집 구하기.cpp">
+      <Filter>소스 파일\Fail</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
