@@ -5,7 +5,7 @@
 
 int rowSize, colSize, minCount;
 char map[11][11];
-int dYX[4][2] = { {-1, 0}, {0, 1}, {1, 0}, {0, -1} };
+int dYX[4][2] = { { -1, 0 },{ 0, 1 },{ 1, 0 },{ 0, -1 } };
 
 int max(int a, int b)
 {

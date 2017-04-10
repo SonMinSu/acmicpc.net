@@ -48,6 +48,12 @@
     <ClCompile Include="2174 로봇 시뮬레이션.c">
       <Filter>소스 파일\Accept</Filter>
     </ClCompile>
+    <ClCompile Include="3613 Java vs C++.c">
+      <Filter>소스 파일\Accept</Filter>
+    </ClCompile>
+    <ClCompile Include="AcceptTest\13460 째로탈출2.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt">
