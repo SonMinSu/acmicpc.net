@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+//https://www.acmicpc.net/problem/4574 - 스도미노쿠
+
 #define DEBUG 0
 #define MAX 9
 

@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+//https://www.acmicpc.net/problem/3108 - ·Î°í
+
 struct square {
 	int x1;
 	int y1;

@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+//https://www.acmicpc.net/problem/2174 - ·Îº¿ ½Ã¹Ä·¹ÀÌ¼Ç
+
 struct robot
 {
 	int y;

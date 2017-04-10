@@ -2,6 +2,8 @@
 #include <string>
 using namespace std;
 
+//https://www.acmicpc.net/problem/1251 - 단어 나누기
+
 void change(string &tmpString, int left, int right)
 {
 	int i, j = 0;

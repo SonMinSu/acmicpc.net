@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+//https://www.acmicpc.net/problem/3613 - Java vs C++
+
 char list[111], translation[222];
 
 int main()

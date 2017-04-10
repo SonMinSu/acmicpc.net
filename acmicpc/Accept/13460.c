@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+//https://www.acmicpc.net/problem/13460 - Â°·ÎÅ»Ãâ2
+
 #define INF 999999999
 #define MAXCOUNT 10
 

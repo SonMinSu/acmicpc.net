@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+//https://www.acmicpc.net/problem/1248 - ¸ÂÃçºÁ
+
 #define DEBUG 0
 #define MAXNUMBER 10
 

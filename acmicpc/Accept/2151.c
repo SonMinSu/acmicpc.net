@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+//https://www.acmicpc.net/problem/2151 - 거울설치
+
 #define DEBUG 0
 #define INF 99999999
 

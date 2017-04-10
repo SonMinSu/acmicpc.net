@@ -18,34 +18,34 @@
     <ClCompile Include="algo.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Accept\1248 맞춰봐.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Accept\1251 단어나누기.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Accept\13460 째로탈출2.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Accept\2151 거울설치.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Accept\2174 로봇 시뮬레이션.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Accept\3108 로고.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Accept\3190 뱀.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Accept\3613 Java vs C++.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Accept\4574 스도미노쿠.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Fail\Fail - 13911 집 구하기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Accept\1248.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Accept\1251.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Accept\2151.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Accept\2174.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Accept\3108.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Accept\3190.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Accept\3613.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Accept\4574.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Accept\13460.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
