@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-//https://www.acmicpc.net/problem/2151 - °Å¿ï¼³Ä¡
+//https://www.acmicpc.net/problem/2151 - ê±°ìš¸ì„¤ì¹˜
 
 #define DEBUG 0
 #define INF 99999999
@@ -29,8 +29,8 @@ void process(int y, int x, int dir, int count)
 	if (arr[y][x] == '!')
 	{
 		arr[y][x] = '*';
-		process(y + dy[(dir + 1) % 4], x + dx[(dir + 1) % 4], (dir + 1) % 4, count + 1);	// ¿À¸¥ÂÊÀ¸·Î ¹æÇâ ÀüÈ¯
-		process(y + dy[(dir + 3) % 4], x + dx[(dir + 3) % 4], (dir + 3) % 4, count + 1);	// ¿ÞÂÊÀ¸·Î ¹æÇâ ÀüÈ¯
+		process(y + dy[(dir + 1) % 4], x + dx[(dir + 1) % 4], (dir + 1) % 4, count + 1);	// ì˜¤ë¥¸ìª½ìœ¼ë¡œ ë°©í–¥ ì „í™˜
+		process(y + dy[(dir + 3) % 4], x + dx[(dir + 3) % 4], (dir + 3) % 4, count + 1);	// ì™¼ìª½ìœ¼ë¡œ ë°©í–¥ ì „í™˜
 		arr[y][x] = '!';
 	}
 }

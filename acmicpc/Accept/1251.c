@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-//https://www.acmicpc.net/problem/1251 - ´Ü¾î ³ª´©±â
+//https://www.acmicpc.net/problem/1251 - ë‹¨ì–´ ë‚˜ëˆ„ê¸°
 
 void change(string &tmpString, int left, int right)
 {

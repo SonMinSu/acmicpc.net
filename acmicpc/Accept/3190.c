@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-//https://www.acmicpc.net/problem/3190 - ¹ì
+//https://www.acmicpc.net/problem/3190 - ë±€
 
 #define DEBUG 0
 
@@ -56,9 +56,9 @@ int main()
 		y = frontY + dy[map[frontY][frontX].dir];
 		x = frontX + dx[map[frontY][frontX].dir];
 
-		if (y < 1 || y > mapSize || x < 1 || x > mapSize)	// º®¿¡ ´êÀ¸¸é
+		if (y < 1 || y > mapSize || x < 1 || x > mapSize)	// ë²½ì— ë‹¿ìœ¼ë©´
 			break;
-		if (map[y][x].value == 1)	// ÀÚ½ÅÀÇ ¸ö¿¡ ´êÀ¸¸é
+		if (map[y][x].value == 1)	// ìì‹ ì˜ ëª¸ì— ë‹¿ìœ¼ë©´
 			break;
 
 		if (map[y][x].value != 2)

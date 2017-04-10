@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-//https://www.acmicpc.net/problem/4574 - ½ºµµ¹Ì³ëÄí
+//https://www.acmicpc.net/problem/4574 - ìŠ¤ë„ë¯¸ë…¸ì¿ 
 
 #define DEBUG 0
 #define MAX 9

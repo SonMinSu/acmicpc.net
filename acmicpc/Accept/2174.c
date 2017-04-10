@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-//https://www.acmicpc.net/problem/2174 - ·Îº¿ ½Ã¹Ä·¹ÀÌ¼Ç
+//https://www.acmicpc.net/problem/2174 - ë¡œë´‡ ì‹œë®¬ë ˆì´ì…˜
 
 struct robot
 {
