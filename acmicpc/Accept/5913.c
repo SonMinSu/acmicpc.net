@@ -3,7 +3,7 @@
 #define MAXSIZE 5
 
 int map[5][5];
-int dyx[4][2] = { {-1, 0}, {0, 1}, {1, 0}, {0, -1} };
+int dyx[4][2] = { { -1, 0 },{ 0, 1 },{ 1, 0 },{ 0, -1 } };
 int wayCount;
 
 void searchMap(int y, int x, int appleCount)
@@ -23,7 +23,7 @@ void searchMap(int y, int x, int appleCount)
 	{
 		ty = y + dyx[i][0];
 		tx = x + dyx[i][1];
-		if (ty < 0 || ty >= MAXSIZE || tx < 0 || tx >= MAXSIZE || map[ty][tx]) 
+		if (ty < 0 || ty >= MAXSIZE || tx < 0 || tx >= MAXSIZE || map[ty][tx])
 			continue;
 		searchMap(ty, tx, appleCount - 1);
 	}
