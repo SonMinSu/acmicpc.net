@@ -54,6 +54,9 @@
     <ClCompile Include="Fail\Fail - 13911 집 구하기.cpp">
       <Filter>소스 파일\Fail</Filter>
     </ClCompile>
+    <ClCompile Include="Accept\2851.c">
+      <Filter>소스 파일\Accept</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt">
