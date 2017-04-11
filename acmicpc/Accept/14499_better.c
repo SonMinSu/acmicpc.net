@@ -2,14 +2,14 @@
 
 int dice[7];
 int rowSize, colSize, map[22][22];
-int dyx[5][2] = { {0, 0}, {0, 1}, {0, -1}, {-1, 0}, {1, 0} };
+int dyx[5][2] = { { 0, 0 },{ 0, 1 },{ 0, -1 },{ -1, 0 },{ 1, 0 } };
 int diceRow, diceCol, cmdCount;
-int moveMap[4][4] = { {3, 1, 4, 6}, {4, 1, 3, 6}, {2, 1, 5, 6}, {5, 1, 2, 6} };
+int moveMap[4][4] = { { 3, 1, 4, 6 },{ 4, 1, 3, 6 },{ 2, 1, 5, 6 },{ 5, 1, 2, 6 } };
 
 int diceMove(int n)
 {
 	int tmp, i;
-	
+
 	tmp = dice[moveMap[n][0]];
 	for (i = 0; i < 3; i++)
 		dice[moveMap[n][i]] = dice[moveMap[n][i + 1]];
