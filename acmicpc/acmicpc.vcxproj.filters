@@ -72,6 +72,9 @@
     <ClCompile Include="Accept\5373.c">
       <Filter>소스 파일\Accept</Filter>
     </ClCompile>
+    <ClCompile Include="Accept\1194.c">
+      <Filter>소스 파일\Accept</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt">
