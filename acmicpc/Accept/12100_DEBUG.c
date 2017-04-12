@@ -2,9 +2,11 @@
 
 #define MAXSIZE 22
 #define MAXDEPTH 5
+#define DEBUG 0
 
 int size, maxValue;
 int dyx[4][2] = { { 1, 0 },{ 0, -1 },{ -1, 0 },{ 0, 1 } };
+int history[MAXDEPTH];
 
 void make2048(int count, int(*map)[MAXSIZE])
 {
@@ -63,6 +65,22 @@ void make2048(int count, int(*map)[MAXSIZE])
 					moveCheck = 1;
 					break;
 				}
+			}
+		}
+
+		if (DEBUG)
+		{
+			history[count - 1] = dir;
+			printf("\n----------------------------------------\nDEBUG\n\nCOUNT : %3d\nMAX : %5d, DIR : %3d, MOVE : %3d\n", count, maxValue, dir, moveCheck);
+			printf("History : %3d", history[0]);
+			for (i = 1; i < count; i++)
+				printf(" --> %3d", history[i]);
+			printf("\n");
+			for (row = 0; row < size; row++)
+			{
+				for (col = 0; col < size; col++)
+					printf("%3d", moveMap[row][col]);
+				printf("\n");
 			}
 		}
 
