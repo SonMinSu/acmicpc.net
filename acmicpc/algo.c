@@ -1,119 +1,119 @@
 #include <stdio.h>
 
-// https://www.acmicpc.net/problem/1194 - 달이 차오른다, 가자
+#define MAXSIZE 22
+#define MAXDEPTH 5
+#define DEBUG 1
 
-#define QUEUESIZE 100000
-#define INFMIN 999999999
+int size, maxValue;
+int dyx[4][2] = { { 1, 0 },{ 0, -1 },{ -1, 0 },{ 0, 1 } };
 
-struct queData
+void make2048(int count, int (*map)[MAXSIZE])
 {
-	int row;
-	int col;
-	int count;
-	int key;
-	int before;
-};
+	int moveMap[MAXSIZE][MAXSIZE], check[MAXSIZE][MAXSIZE];
+	int dir, i, j, k, row, col, pivotRow, pivotCol, tmp, moveCheck;
 
-struct checkMap
-{
-	int count;
-	int key;
-};
-
-int rowSize, colSize;
-char map[52][52];
-int direction[4][2] = { { -1, 0 },{ 0, 1 },{ 1, 0 },{ 0, -1 } };
-int visit[64][52][52];
-struct queData queue[QUEUESIZE];
-
-int queuePush(int *tail, int row, int col, int count, int key, int before)
-{
-	queue[*tail].row = row;
-	queue[*tail].col = col;
-	queue[*tail].count = count;
-	queue[*tail].key = key;
-	queue[*tail].before = before;
-	*tail += 1;
-
-	visit[key][row][col] = count;
-}
-
-int searchMaze(int startRow, int startCol)
-{
-	int front, tail, dir, nextRow, nextCol, min;
-	struct queData data;
-
-	min = INFMIN;
-	front = 0; tail = 0;
-	queuePush(&tail, startRow, startCol, 0, 0, -1);
-	//	queue[tail].row = startRow, queue[tail].col = startCol, queue[tail].count = 0, queue[tail].key = 0;
-	//	tail++;
-
-	while (front < tail)
+	/*
+	for (row = 0; row < size; row++)
+		for (col = 0; col < size; col++)
+			moveMap[row][col] = map[row][col];
+	*/
+	for (dir = 0; dir < 4; dir++)
 	{
-		for (dir = 0; dir < 4; dir++)
+		for (row = 0; row < size; row++)
+			for (col = 0; col < size; col++)
+				moveMap[row][col] = 0, check[row][col] = 0;
+
+		moveCheck = 0;
+		for (i = 0; i < size; i++)
 		{
-			data = queue[front];
-			nextRow = data.row + direction[dir][0];
-			nextCol = data.col + direction[dir][1];
-			if (map[nextRow][nextCol] == '.' &&
-				(visit[data.key][nextRow][nextCol] > data.count + 1 ||		// 움직임 횟수가 더 작거나
-					visit[data.key][nextRow][nextCol] == 0))				// 한 번도 방문 한 적이 없거나
+			k = 0;
+			for (j = 0; j < size; j++)
 			{
-				queuePush(&tail, nextRow, nextCol, data.count + 1, data.key, front);
-			}
-			else if ('a' <= map[nextRow][nextCol] && map[nextRow][nextCol] <= 'f' &&
-				(visit[data.key][nextRow][nextCol] == 0 ||
-					visit[data.key][nextRow][nextCol] > data.count + 1))
-			{
-				queuePush(&tail, nextRow, nextCol, data.count + 1, data.key | (1 << (map[nextRow][nextCol] - 'a')), front);
-			}
-			else if ('A' <= map[nextRow][nextCol] && map[nextRow][nextCol] <= 'F' &&
-				data.key & (1 << (map[nextRow][nextCol] - 'A')) &&
-				(visit[data.key][nextRow][nextCol] > data.count + 1 || visit[data.key][nextRow][nextCol] == 0))
-			{
-				queuePush(&tail, nextRow, nextCol, data.count + 1, data.key, front);
-			}
-			else if (map[nextRow][nextCol] == '1')
-			{
-				if (min > data.count + 1)
-					min = data.count + 1;
+				if (dir == 0) row = j, col = i, pivotRow = 0, pivotCol = i;
+				else if (dir == 1) row = i, col = size - j - 1, pivotRow = i, pivotCol = size - 1;
+				else if (dir == 2) row = size - j - 1, col = i, pivotRow = size - 1, pivotCol = 0;
+				else if (dir == 3) row = i, col = j, pivotRow = i, pivotCol = 0;
+
+				if (map[row][col] != 0)
+				{
+					if (check[row][col] == 0 && k > 0 && moveMap[pivotRow + (k - 1) * dyx[dir][0]][pivotCol + (k - 1) * dyx[dir][1]] == map[row][col])
+					{
+						check[row][col] = 1;
+						moveMap[pivotRow + (k - 1) * dyx[dir][0]][pivotCol + (k - 1) * dyx[dir][1]] += map[row][col];
+						if (moveMap[pivotRow + (k - 1) * dyx[dir][0]][pivotCol + (k - 1) * dyx[dir][1]] > maxValue)
+							maxValue = moveMap[pivotRow + (k - 1) * dyx[dir][0]][pivotCol + (k - 1) * dyx[dir][1]];
+					}
+					else if (check[row][col] == 0)
+					{
+						moveMap[pivotRow + k * dyx[dir][0]][pivotCol + k * dyx[dir][1]] = map[row][col];
+						check[row][col] = 1;
+						if (moveMap[pivotRow + k * dyx[dir][0]][pivotCol + k * dyx[dir][1]] > maxValue)
+							maxValue = moveMap[pivotRow + k * dyx[dir][0]][pivotCol + k * dyx[dir][1]];
+						k++;
+						j--;
+					}
+				}
+
+				if (map[row][col] != moveMap[row][col])
+					moveCheck = 1;
+
+/*
+				for (k = 1; k <= size - j - 1; k++)
+				{
+					tmp = moveMap[row + k * dyx[dir][0]][col + k * dyx[dir][1]];
+					if (tmp == 0)
+						continue;
+					else if (moveMap[row][col] != 0 && moveMap[row][col] != tmp)
+						break;
+					
+					if (moveMap[row][col] == 0)
+						moveMap[row][col] = tmp, j = j - 1;
+					else if (moveMap[row][col] == tmp)
+						moveMap[row][col] += tmp;
+					moveMap[row + k * dyx[dir][0]][col + k * dyx[dir][1]] = 0;
+					moveCheck = 1;
+					break;
+				}
+				if (moveMap[row][col] > maxValue)
+					maxValue = moveMap[row][col];
+*/				
 			}
 		}
 
-		front++;
-	}
+		if (DEBUG)
+		{
+			printf("\n----------------------------------------\nDEBUG\n\nCOUNT : %3d\nMAX : %5d, DIR : %3d, MOVE : %3d\n", count, maxValue, dir, moveCheck);
+			for (row = 0; row < size; row++)
+			{
+				for (col = 0; col < size; col++)
+					printf("%3d", moveMap[row][col]);
+				printf("\n");
+			}
+		}
 
-	if (min == INFMIN) min = -1;
-	return min;
+		if (moveCheck && count + 1 <= MAXDEPTH)
+			make2048(count + 1, moveMap);
+
+		/*
+		for (row = 0; row < size; row++)
+			for (col = 0; col < size; col++)
+				moveMap[row][col] = map[row][col];
+		*/
+	}
 }
 
 int main()
 {
-	int row, col, startRow, startCol;
+	int row, col, map[MAXSIZE][MAXSIZE];
 
-	scanf("%d %d", &rowSize, &colSize);
+	scanf("%d", &size);
+	for (row = 0; row < size; row++)
+		for (col = 0; col < size; col++)
+			scanf("%d", &map[row][col]);
 
-	startRow = startCol = 0;
-	for (row = 1; row <= rowSize; row++)
-	{
-		scanf("%s", &map[row][1]);
-		map[row][0] = '#';
-		map[row][colSize + 1] = '#';
-		for (col = 1; col <= colSize && (startRow == 0 || row == 1); col++)
-		{
-			map[0][col] = '#';
-			map[rowSize + 1][col] = '#';
-			if (map[row][col] == '0')
-			{
-				startRow = row;
-				startCol = col;
-				map[row][col] = '.';
-			}
-		}
-	}
-
-	printf("%d", searchMaze(startRow, startCol));
+	maxValue = 0;
+	make2048(1, map);
+	printf("%d", maxValue);
 
 	return 0;
 }
