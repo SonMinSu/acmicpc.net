@@ -1,141 +1,120 @@
 #include <stdio.h>
 
-#define DEBUG 0
+// https://www.acmicpc.net/problem/1194 - 달이 차오른다, 가자
 
-char cube[18][3];
-char map[2][6][12][4] = {
-	{
-		{ { 0, 0, 6, 0 },{ 0, 1, 6, 1 },{ 0, 2, 6, 2 },{ 6, 0, 9, 0 },{ 6, 1, 9, 1 },{ 6, 2, 9, 2 },{ 9, 0, 3, 0 },{ 9, 1, 3, 1 },{ 9, 2, 3, 2 },{ 3, 0, 0, 0 },{ 3, 1, 0, 1 },{ 3, 2, 0, 2 } },
-		{ { 2, 0, 5, 0 },{ 2, 1, 5, 1 },{ 2, 2, 5, 2 },{ 5, 0, 11, 0 },{ 5, 1, 11, 1 },{ 5, 2, 11, 2 },{ 11, 0, 8, 0 },{ 11, 1, 8, 1 },{ 11, 2, 8, 2 },{ 8, 0, 2, 0 },{ 8, 1, 2, 1 },{ 8, 2, 2, 2 } },
-		{ { 17, 0, 5, 2 },{ 17, 1, 4, 2 },{ 17, 2, 3, 2 },{ 3, 2, 12, 0 },{ 4, 2, 12, 1 },{ 5, 2, 12, 2 },{ 12, 0, 8, 0 },{ 12, 1, 7, 0 },{ 12, 2, 6, 0 },{ 6, 0, 17, 0 },{ 7, 0, 17, 1 },{ 8, 0, 17, 2 } },
-		{ { 15, 0, 6, 2 },{ 15, 1, 7, 2 },{ 15, 2, 8, 2 },{ 6, 2, 14, 2 },{ 7, 2, 14, 1 },{ 8, 2, 14, 0 },{ 14, 2, 5, 0 },{ 14, 1, 4, 0 },{ 14, 0, 3, 0 },{ 5, 0, 15, 0 },{ 4, 0, 15, 1 },{ 3, 0, 15, 2 } },
-		{ { 0, 0, 15, 0 },{ 1, 0, 16, 0 },{ 2, 0, 17, 0 },{ 15, 0, 11, 2 },{ 16, 0, 10, 2 },{ 17, 0, 9, 2 },{ 9, 2, 14, 0 },{ 10, 2, 13, 0 },{ 11, 2, 12, 0 },{ 12, 0, 0, 0 },{ 13, 0, 1, 0 },{ 14, 0, 2, 0 } },
-		{ { 9, 0, 17, 2 },{ 10, 0, 16, 2 },{ 11, 0, 15, 2 },{ 17, 2, 2, 2 },{ 16, 2, 1, 2 },{ 15, 2, 0, 2 },{ 2, 2, 14, 2 },{ 1, 2, 13, 2 },{ 0, 2, 12, 2 },{ 14, 2, 9, 0 },{ 13, 2, 10, 0 },{ 12, 2, 11, 0 } }
-	},
-	{
-		{ { 0, 0, 3, 0 },{ 0, 1, 3, 1 },{ 0, 2, 3, 2 },{ 3, 0, 9, 0 },{ 3, 1, 9, 1 },{ 3, 2, 9, 2 },{ 9, 0, 6, 0 },{ 9, 1, 6, 1 },{ 9, 2, 6, 2 },{ 6, 0, 0, 0 },{ 6, 1, 0, 1 },{ 6, 2, 0, 2 } },
-		{ { 2, 0, 8, 0 },{ 2, 1, 8, 1 },{ 2, 2, 8, 2 },{ 8, 0, 11, 0 },{ 8, 1, 11, 1 },{ 8, 2, 11, 2 },{ 11, 0, 5, 0 },{ 11, 1, 5, 1 },{ 11, 2, 5, 2 },{ 8, 0, 2, 0 },{ 8, 1, 2, 1 },{ 8, 2, 2, 2 } },
-		{ { 5, 2, 17, 0 },{ 4, 2, 17, 1 },{ 3, 2, 17, 2 },{ 17, 0, 6, 0 },{ 17, 1, 7, 0 },{ 17, 2, 8, 0 },{ 6, 0, 12, 2 },{ 7, 0, 12, 1 },{ 8, 0, 12, 0 },{ 12, 2, 5, 2 },{ 12, 1, 4, 2 },{ 12, 0, 3, 2 } },
-		{ { 3, 0, 14, 0 },{ 4, 0, 14, 1 },{ 5, 0, 14, 2 },{ 14, 0, 8, 2 },{ 14, 1, 7, 2 },{ 14, 2, 6, 2 },{ 8, 2, 15, 2 },{ 7, 2, 15, 1 },{ 6, 2, 15, 0 },{ 15, 2, 3, 0 },{ 15, 1, 4, 0 },{ 15, 0, 5, 0 } },
-		{ { 0, 0, 12, 0 },{ 1, 0, 13, 0 },{ 2, 0, 14, 0 },{ 12, 0, 11, 2 },{ 13, 0, 10, 2 },{ 14, 0, 9, 2 },{ 11, 2, 15, 0 },{ 10, 2, 16, 0 },{ 9, 2, 17, 0 },{ 15, 0, 0, 0 },{ 16, 0, 1, 0 },{ 17, 0, 2, 0 } },
-		{ { 2, 2, 17, 2 },{ 1, 2, 16, 2 },{ 0, 2, 15, 2 },{ 17, 2, 9, 0 },{ 16, 2, 10, 0 },{ 15, 2, 11, 0 },{ 9, 0, 14, 2 },{ 10, 0, 13, 2 },{ 11, 0, 12, 2 },{ 14, 2, 2, 2 },{ 13, 2, 1, 2 },{ 12, 2, 0, 2 } }
-	}
-};
-char map2[2][6][6][4] = {
-	{
-		{{15, 2, 15, 0},{15, 0, 17, 0}, {17, 0, 17, 2}, {16, 2, 15, 1}, {15, 1, 16, 0}, {16, 0, 17, 1}}, 
-		{{12, 2, 12, 0}, {12, 0, 14, 0}, {14, 0, 14, 2}, {13, 2, 12, 1}, {12, 1, 13, 0}, {13, 0, 14, 1}}, 
-		{{0, 2, 0, 0}, {0, 0, 2, 0}, {2, 0, 2, 2}, {1, 2, 0, 1}, {0, 1, 1, 0}, {1, 0, 2, 1}}, 
-		{{9, 2, 9, 0}, {9, 0, 11, 0}, {11, 0, 11, 2}, {10, 2, 9, 1}, {9, 1, 10, 0}, {10, 0, 11, 1}}, 
-		{{3, 2, 3, 0}, {3, 0, 5, 0}, {5, 0, 5, 2}, {4, 2, 3, 1}, {3, 1, 4, 0}, {4, 0, 5, 1}}, 
-		{{6, 2, 6, 0}, {6, 0, 8, 0}, {8, 0, 8, 2}, {7, 2, 6, 1}, {6, 1, 7, 0}, {7, 0, 8, 1}}
-	}, 
-	{
-		{{15, 0, 15, 2}, {15, 2, 17, 2}, {17, 2, 17, 0}, {16, 0, 15, 1}, {15, 1, 16, 2}, {16, 2, 17, 1}}, 
-		{{12, 0, 12, 2}, {12, 2, 14, 2}, {14, 2, 14, 0}, {13, 0, 12, 1}, {12, 1, 13, 2}, {13, 2, 14, 1}}, 
-		{{0, 0, 0, 2}, {0, 2, 2, 2}, {2, 2, 2, 0}, {1, 0, 0, 1}, {0, 1, 1, 2}, {1, 2, 2, 1}}, 
-		{{9, 0, 9, 2}, {9, 2, 11, 2}, {11, 2, 11, 0}, {10, 0, 9, 1}, {9, 1, 10, 2}, {10, 2, 11, 1}},
-		{{3, 0, 3, 2}, {3, 2, 5, 2}, {5, 2, 5, 0}, {4, 0, 3, 1}, {3, 1, 4, 2}, {4, 2, 5, 1}}, 
-		{{6, 0, 6, 2}, {6, 2, 8, 2}, {8, 2, 8, 0}, {7, 0, 6, 1}, {6, 1, 7, 2}, {7, 2, 8, 1}}
-	}
-};
+#define QUEUESIZE 100000
 
-
-void init()
+struct queData
 {
+	int row;
+	int col;
+	int count;
+	int key;
+	int before;
+};
+
+struct checkMap
+{
+	int count;
+	int key;
+};
+
+int rowSize, colSize;
+char map[52][52];
+int direction[4][2] = { { -1, 0 },{ 0, 1 },{ 1, 0 },{ 0, -1 } };
+struct checkMap visit[52][52];
+struct queData queue[QUEUESIZE];
+
+int queuePush(int *tail, int row, int col, int count, int key, int before)
+{
+	queue[*tail].row = row;
+	queue[*tail].col = col;
+	queue[*tail].count = count;
+	queue[*tail].key = key;
+	queue[*tail].before = before;
+	*tail += 1;
+
+	visit[row][col].count = count;
+	visit[row][col].key = key;
+}
+
+int searchMaze(int startRow, int startCol)
+{
+	int front, tail, dir, nextRow, nextCol;
 	int i, j;
-	char text[] = { 'r', 'g', 'b', 'o', 'y', 'w' };
 
-	for (i = 0; i < 18; i++)
+	front = 0; tail = 0;
+	queue[tail].row = startRow, queue[tail].col = startCol, queue[tail].count = 0, queue[tail].key = 0;
+	tail++;
+
+	while (front < tail)
 	{
-		for (j = 0; j < 3; j++)
+		for (dir = 0; dir < 4; dir++)
 		{
-			cube[i][j] = text[(int)i / 3];
+			nextRow = queue[front].row + direction[dir][0];
+			nextCol = queue[front].col + direction[dir][1];
+			if (map[nextRow][nextCol] == '.' &&
+				(visit[nextRow][nextCol].count > queue[front].count + 1 ||		// 움직임 횟수가 더 작거나
+					visit[nextRow][nextCol].count == 0 ||						// 한 번도 방문 한 적이 없거나
+					visit[nextRow][nextCol].key < queue[front].key))				// 열쇠를 더 많이 가지고있다면
+			{
+				queuePush(&tail, nextRow, nextCol, queue[front].count + 1, queue[front].key, front);
+			}
+			else if ('a' <= map[nextRow][nextCol] && map[nextRow][nextCol] <= 'f' &&
+				(visit[nextRow][nextCol].count == 0 ||
+					visit[nextRow][nextCol].count > queue[front].count + 1 ||
+					visit[nextRow][nextCol].key < queue[front].key))
+			{
+				queuePush(&tail, nextRow, nextCol, queue[front].count + 1, queue[front].key | (1 << (map[nextRow][nextCol] - 'a')), front);
+			}
+			else if ('A' <= map[nextRow][nextCol] && map[nextRow][nextCol] <= 'F' &&
+				queue[front].key & (1 << (map[nextRow][nextCol] - 'A')) &&
+				visit[nextRow][nextCol].key < queue[front].key)
+			{
+				queuePush(&tail, nextRow, nextCol, queue[front].count + 1, queue[front].key, front);
+			}
+			else if (map[nextRow][nextCol] == '1')
+			{
+				for (i = 0; i <= front; i++)
+				{
+					printf("index : %3d, row : %3d, col : %3d, count : %3d, key : %3d, before : %3d\n", i, queue[i].row, queue[i].col, queue[i].count, queue[i].key, queue[i].before);
+				}
+				return queue[front].count + 1;
+			}
 		}
+
+		front++;
 	}
-}
 
-void charChange(int y1, int x1, int y2, int x2)
-{
-	char t;
-
-	t = cube[y1][x1];
-	cube[y1][x1] = cube[y2][x2];
-	cube[y2][x2] = t;
-}
-
-void changeCube(char cmd[])
-{
-	int i;
-	char match[128];
-
-	match['U'] = 0;
-	match['D'] = 1;
-	match['F'] = 2;
-	match['B'] = 3;
-	match['L'] = 4;
-	match['R'] = 5;
-	match['+'] = 0;
-	match['-'] = 1;
-
-	for (i = 0; i < 9; i++)
-		charChange(map[match[cmd[1]]][match[cmd[0]]][i][0], map[match[cmd[1]]][match[cmd[0]]][i][1], map[match[cmd[1]]][match[cmd[0]]][i][2], map[match[cmd[1]]][match[cmd[0]]][i][3]);
-	for (i = 0; i < 6; i++)
-		charChange(map2[match[cmd[1]]][match[cmd[0]]][i][0], map2[match[cmd[1]]][match[cmd[0]]][i][1], map2[match[cmd[1]]][match[cmd[0]]][i][2], map2[match[cmd[1]]][match[cmd[0]]][i][3]);
-
+	return -1;
 }
 
 int main()
 {
-	int testCaseCount, testCase;
-	int n, i, j;
-	char cmd[3];
+	int row, col, startRow, startCol;
 
-	scanf("%d", &testCaseCount);
-	for (testCase = 0; testCase < testCaseCount; testCase++)
+	scanf("%d %d", &rowSize, &colSize);
+
+	startRow = startCol = 0;
+	for (row = 1; row <= rowSize; row++)
 	{
-		init();
-
-		if (DEBUG)
+		scanf("%s", &map[row][1]);
+		map[row][0] = '#';
+		map[row][colSize + 1] = '#';
+		for (col = 1; col <= colSize && (startRow == 0 || row == 1); col++)
 		{
-			printf("\n\n");
-			for (i = 0; i < 18; i++)
+			map[0][col] = '#';
+			map[rowSize + 1][col] = '#';
+			if (map[row][col] == '0')
 			{
-				if (i % 3 == 0)
-					printf("----------\n");
-				for (j = 0; j < 3; j++)
-				{
-					printf("%c", cube[i][j]);
-				}
-				printf("\n");
+				startRow = row;
+				startCol = col;
+				map[row][col] = '.';
 			}
-			printf("\n\n");
-		}
-
-		scanf("%d", &n);
-		for (i = 0; i < n; i++)
-		{
-			scanf("%s", cmd);
-			changeCube(cmd);
-
-			if (DEBUG)
-			{
-				for (j = 15; j < 18; j++)
-				{
-					printf("%c%c%c\n", cube[j][0], cube[j][1], cube[j][2]);
-				}
-			}
-		}
-
-		for (i = 15; i < 18; i++)
-		{
-			for (j = 0; j < 3; j++)
-			{
-				printf("%c", cube[i][j]);
-			}
-			printf("\n");
 		}
 	}
+
+	printf("%d", searchMaze(startRow, startCol));
 
 	return 0;
 }
