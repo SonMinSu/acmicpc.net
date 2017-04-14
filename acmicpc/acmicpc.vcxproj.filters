@@ -72,9 +72,6 @@
     <ClCompile Include="Accept\1194.c">
       <Filter>소스 파일\Accept</Filter>
     </ClCompile>
-    <ClCompile Include="algo.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Accept\12100_DEBUG.c">
       <Filter>소스 파일\Accept</Filter>
     </ClCompile>
@@ -83,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="Accept\3967.c">
       <Filter>소스 파일\Accept</Filter>
+    </ClCompile>
+    <ClCompile Include="algo.c">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
